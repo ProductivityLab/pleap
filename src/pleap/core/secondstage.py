@@ -189,6 +189,33 @@ def _fit_mle(negll_grad, y, Z, lower, upper, names):
             if np.isfinite(alt.fun) and alt.fun < opt.fun:
                 opt = alt
         gnorm = float(np.linalg.norm(f(opt.x)[1]))
+    # Polish with Newton steps on the analytic gradient.  BFGS stops once the
+    # gradient is below gtol; where the likelihood is flat that can leave the
+    # estimate some 1e-9 from the maximum, and where in that band it stops
+    # depends on the platform's floating point: in CI the model truncated at 0
+    # and 1 ended 2.2e-9 from the 60-digit maximum on Windows and macOS and
+    # 9e-12 on Linux.  Newton's method converges quadratically from there, so
+    # every platform reaches the maximum itself.  A step is kept only if it
+    # shrinks the gradient without lowering the likelihood.
+    if np.all(np.isfinite(opt.x)):
+        x = np.array(opt.x, float)
+        fx, gx = f(x)
+        for _ in range(6):
+            try:
+                step = np.linalg.solve(_num_hessian(f, x), gx)
+            except Exception:
+                break
+            xn = x - step
+            fn, gn = f(xn)
+            if (not np.isfinite(fn) or not np.all(np.isfinite(gn))
+                    or np.linalg.norm(gn) >= np.linalg.norm(gx)
+                    or fn > fx + 1e-12 * max(1.0, abs(fx))):
+                break
+            x, fx, gx = xn, fn, gn
+            if np.linalg.norm(gx) < 1e-12:
+                break
+        opt.x, opt.fun = x, fx
+        gnorm = float(np.linalg.norm(gx))
     converged = bool(opt.success or gnorm < 1e-4)
     a = opt.x[:k]; sigma = float(np.exp(opt.x[k]))
     try:

@@ -376,6 +376,18 @@ optimum.
 
 ## 5. Tobit and truncated regression — R, Stata
 
+**Newton polish (v1.12).** BFGS stops at its gradient tolerance, and where the
+likelihood is flat the point where it stops depends on the platform: the fit
+truncated at 0 and 1 on SD ended 2.2 × 10⁻⁹ from its 60-digit maximum on
+Windows and macOS in continuous integration, 9 × 10⁻¹² on Linux. A few Newton
+steps on the analytic gradient now follow BFGS. On the public data every
+coefficient and log σ is then within 3 × 10⁻¹⁶ of the 60-digit maximum and
+the log-likelihood within 3 × 10⁻¹⁴ (SD censored at 0 and 1 and at 0;
+SD truncated at 0 and 1; E's Algorithm 1 sample). The tables below were
+measured before the polish: their columns against the 60-digit maximum
+overstate PLEAP's remaining distance, and its distance from R and Stata is now
+the reference programs' own distance from the maximum.
+
 ### 5.1 Tobit — R `AER::tobit` / `survreg(dist = "gaussian")`
 
 **On the public data set SD** (400 units, 26 on the frontier;

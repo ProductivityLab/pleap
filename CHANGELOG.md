@@ -91,6 +91,19 @@ The 135-plant second-stage fixture (`ds_b_tobit.csv`) is withdrawn because its
 release was not agreed. The MaxDEA bootstrap comparisons run PLEAP at
 MaxDEA's own B = 500.
 
+### Fixed: second-stage estimates now reach the maximum on every platform
+
+The Tobit and truncated regressions are fitted by BFGS, which stops once the
+gradient falls below its tolerance. Where the likelihood is flat that can leave
+the estimate a few 10⁻⁹ from the maximum, at a point that depends on the
+platform's floating point: in continuous integration the fit truncated at 0
+and 1 on the synthetic data set SD ended 2.2 × 10⁻⁹ from its 60-digit maximum
+on Windows and macOS and 9 × 10⁻¹² on Linux. A few Newton steps on the
+analytic gradient now follow BFGS, and each is kept only if it shrinks the
+gradient without lowering the likelihood. On the public data every fit is now
+within 3 × 10⁻¹⁶ of the 60-digit maximum, on any platform. Displayed results
+do not change.
+
 ### Fixed: DEA, Malmquist and bootstrap scores on strongly skewed data
 
 v1.0.9 and v1.1.0 divided each input and output column by its **arithmetic
