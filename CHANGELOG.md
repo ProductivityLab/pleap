@@ -4,8 +4,9 @@
 
 **Licence and distribution.** PLEAP is released under the GNU General Public
 License v3.0 or later. The source lives at
-https://github.com/ProductivityLab/pleap; the Windows installer remains available
-for users who do not have Python, and is now built from the same public source.
+https://github.com/ProductivityLab/pleap; a packaged Windows build remains
+available for users who do not have Python, and is now built from the same public
+source.
 
 ### Fixed: returns to scale under output orientation had IRS and DRS swapped
 

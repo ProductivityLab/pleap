@@ -3,7 +3,7 @@ setlocal EnableDelayedExpansion
 cd /d %~dp0\..
 
 echo ============================================================
-echo  PLEAP v1.1.0 - Build standalone EXE
+echo  PLEAP v1.12 - Build the packaged Windows folder (dist\PLEAP)
 echo ============================================================
 echo Working dir: %CD%
 echo.

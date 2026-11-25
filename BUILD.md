@@ -1,9 +1,27 @@
-# Building the Windows installer
+# Building the Windows release
 
 Most people do not need this file. To *run* PLEAP from source see `README.md`;
-to install it on Windows, take the installer from the
+to use it on Windows without Python, take the packaged build from the
 [Releases](https://github.com/ProductivityLab/pleap/releases) page. This file is
-for producing that installer.
+for producing it.
+
+## The packaged build (what the release carries)
+
+```bat
+build_tools\build_exe.bat
+```
+
+needs Python 3.10 or newer (64-bit) on the PATH and builds `dist\PLEAP\`:
+`PLEAP.exe` and the `_internal` folder it needs (Python,
+Qt, NumPy, SciPy and the example data sets). `PLEAP.exe` does not run on its
+own; zip the whole `dist\PLEAP` folder (`PLEAP-v1.12-windows.zip`) and attach
+that to the release, with its SHA-256
+(`certutil -hashfile PLEAP-v1.12-windows.zip SHA256`).
+
+## The installer (optional)
+
+The rest of this file produces a conventional installer with Inno Setup
+instead, which adds a Start-menu entry and an uninstaller.
 
 ## Prerequisites
 

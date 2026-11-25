@@ -104,9 +104,10 @@ To use the analysis layer without the interface, leave out `[gui]` — then
 NumPy, pandas, SciPy, statsmodels, openpyxl and matplotlib are all that is
 needed, and nothing requires a display.
 
-Windows users who would rather not install Python can take the packaged
-installer from the [Releases](https://github.com/ProductivityLab/pleap/releases)
-page; `BUILD.md` describes how that installer is produced.
+Windows users who would rather not install Python can download the packaged
+Windows build from the [Releases](https://github.com/ProductivityLab/pleap/releases)
+page: unzip it and run `PLEAP.exe` inside the folder (keep the `_internal`
+folder next to it). `BUILD.md` describes how the build is produced.
 
 ## Use
 
