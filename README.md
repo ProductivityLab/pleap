@@ -53,8 +53,8 @@ these run in continuous integration on every push to the main branch and every p
 | Scores on a column spanning 11 decades (the scaling fault, `docs/validation.md` §4) | the optimum in exact rational arithmetic; R `Benchmarking` | 30 DMUs, all four models: within 3.2 × 10⁻⁹ of the exact optimum (Benchmarking misses one VRS unit, by 2.5 × 10⁻³) |
 | Returns to scale | the NIRS test on Benchmarking's CRS, VRS and NIRS scores, 400 DMUs | every unit, both orientations |
 | Malmquist MI / EC / TC | `Benchmarking::malmq`, CRS and VRS, both orientations | 7 × 10⁻¹², with the same infeasible distances flagged |
-| Tobit | R `AER::tobit`, two censoring specifications; 60-digit likelihood maximum | coefficients within 9 × 10⁻¹² of R, 6 × 10⁻¹¹ of the 60-digit fit |
-| Truncated regression | R `truncreg`; 60-digit maximum for truncation at 0 and 1 | 1.4 × 10⁻⁹ or better; 9 × 10⁻¹² against the 60-digit fit |
+| Tobit | R `AER::tobit`, two censoring specifications; 60-digit likelihood maximum | coefficients and log σ within 2 × 10⁻¹¹ of R (R's own distance from the maximum) and 2 × 10⁻¹⁶ of the 60-digit fit |
+| Truncated regression | R `truncreg`; 60-digit maximum for truncation at 0 and 1 | 1.4 × 10⁻⁹ or better (`truncreg`'s own distance from the maximum); 3 × 10⁻¹⁶ against the 60-digit fit |
 | OLS, *t*-tests, Levene, ANOVA, Welch ANOVA, Tukey HSD, Games–Howell | R `lm`, `t.test`, `car::leveneTest`, `oneway.test`, `TukeyHSD`, `ptukey` | 5 × 10⁻¹⁴ relative; Games–Howell *p* 8 × 10⁻⁹; Tukey *p* 8 × 10⁻¹⁰ (2 × 10⁻⁵ at *p* = 8 × 10⁻⁷, where R's `ptukey` is the less precise) |
 | Mann–Whitney *U*, Kruskal–Wallis, Dunn | R `wilcox.test`, `kruskal.test`, `rstatix::dunn_test` | 4 × 10⁻¹⁵, tie-corrected |
 | Bootstrap | R `Benchmarking::dea.boot` | with Benchmarking's smoothing rule swapped in, within Monte-Carlo error of Benchmarking's own results |
@@ -74,7 +74,7 @@ aggregate:
 | CCR / BCC scores, both orientations | MaxDEA, 4 data sets (60 / 135 / 61 / 453 DMUs, 2–3 inputs) | to MaxDEA's six-decimal display precision; ≤ 8 × 10⁻¹³ where the reference carries full precision; slacks, projections and peer sets as well |
 | Returns to scale | the NIRS test on MaxDEA's own CRS, VRS and NIRS scores, 453 DMUs | every unit, both orientations (MaxDEA's own RTS column is not a usable reference: `docs/validation.md` §2a) |
 | Malmquist MI / EC / TC | MaxDEA, under both CRS and VRS | same as the scores |
-| Tobit | R `AER::tobit` / `survreg(dist = "gaussian")`, 453 DMUs | every coefficient and standard error within 5 × 10⁻¹⁰ |
+| Tobit | R `AER::tobit` / `survreg(dist = "gaussian")`, 453 DMUs | every coefficient and standard error within 5.3 × 10⁻¹¹; in the coefficients that is R's own distance from the 60-digit maximum, which PLEAP reaches to 3 × 10⁻¹⁶ |
 | Truncated regression | Stata `truncreg`, R `truncreg`, 453 DMUs | within the reference programs' own stopping tolerances (to 6 × 10⁻⁶ relative), with PLEAP's likelihood at least as high |
 | OLS, *t*-test, Levene, ANOVA, Tukey HSD, Games–Howell | SPSS, 207 DMUs | 10⁻⁷ relative or better |
 | Mann–Whitney *U*, Kruskal–Wallis, Dunn | SPSS "Asymp. Sig.", 453 DMUs | exact on PLEAP's own scores: frontier scores equal up to rounding count as ties, as they do in the exported data |

@@ -16,9 +16,10 @@ environmental variables.  Two data sets:
   (``tests/data/sd_r_secondstage.json``, ``docs/external_reference/
   reference_sd.R``), and the 60-digit maximum of the same likelihood
   (``tests/data/exact_mle.json``, ``docs/external_reference/exact_mle.py``).
-  Measured agreement: 9e-12 on the coefficients and 6e-11 relative on the
-  standard errors against R, 6e-11 on the coefficients against the 60-digit
-  maximum.
+  Measured agreement (v1.12): 2e-11 on the coefficients and log scale
+  against R, which is R's own distance from the maximum, and 4e-11 relative
+  on the standard errors (numerical second derivatives); 1e-16 on the
+  coefficients against the 60-digit maximum.
 * D (private: 453 firms of the Korean Innovation Survey, not redistributed,
   skipped without it): R ``AER::tobit`` as run by the author through SPSS's R
   extension, full-precision coefficients and standard errors; log-likelihood,
@@ -147,15 +148,17 @@ def test_censoring_counts_follow_the_bounds(case):
 @pytest.mark.parametrize("spec", SPECS)
 def test_the_maximum_matches_60_digit_arithmetic(sd, exact_mle, spec):
     """The same likelihood maximised in 60-digit arithmetic, independently of
-    R and of PLEAP: measured agreement 6e-11 on the coefficients, 6e-11
-    relative on the standard errors, 5e-14 on the log-likelihood."""
+    R and of PLEAP: measured agreement 1e-16 on the coefficients and log
+    scale, 4e-11 relative on the standard errors, 2e-14 on the log-likelihood.
+    The 1e-12 asked of the coefficients holds on every platform since the
+    Newton polish after BFGS; BFGS alone stopped up to 2e-9 short."""
     key, upper = SD_KEYS[spec]
     e = exact_mle["sd_" + key]
     f = tobit_regression(sd["vrs_i"].to_numpy(float), sd[["x1", "x2"]].to_numpy(float),
                          lower=0.0, upper=upper, names=["x1", "x2"])
     want = [float(v) for v in e["coef"]] + [float(e["log_sigma"])]
     for name, w, se in zip(("const", "x1", "x2", "Log(scale)"), want, e["se"]):
-        assert _get(f, "coef_raw", name) == pytest.approx(w, abs=1e-9)
+        assert _get(f, "coef_raw", name) == pytest.approx(w, abs=1e-12)
         assert _get(f, "se_raw", name) == pytest.approx(float(se), rel=1e-8)
     assert f["loglik"] == pytest.approx(float(e["loglik"]), abs=1e-10)
     assert f["wald"] == pytest.approx(float(e["wald"]), rel=1e-8)

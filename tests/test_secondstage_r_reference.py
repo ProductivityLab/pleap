@@ -11,7 +11,7 @@ These are the public counterparts of ``test_secondstage_reference.py``, which
 checks the same statistics against Stata and SPSS on the private validation
 data.  The Tobit model is in ``test_tobit_reference.py``.
 
-Measured agreement: truncated regression 2e-13 (at 0) and 3e-10 (at 1, where
+Measured agreement: truncated regression 1e-13 (at 0) and 7e-13 (at 1, where
 R's Newton-Raphson stops at a gradient of 8e-9) on the coefficients; OLS,
 t-tests, Levene, ANOVA, Welch's ANOVA, Mann-Whitney, Kruskal-Wallis and Dunn
 5e-14 relative or better; Games-Howell 8e-9; Tukey 8e-10, and 2.2e-5 for the
@@ -79,15 +79,17 @@ def test_truncated_regression_matches_r_truncreg(yz, sd_r, key, lower, upper, co
 def test_truncation_at_zero_and_one_matches_60_digit_arithmetic(yz, exact_mle):
     """Two truncation points, which R's truncreg cannot fit (Stata's ``ll(0)
     ul(1)`` is the reference on the private data): the 60-digit maximum of the
-    same likelihood instead.  Measured: 9e-12 on the coefficients, 2e-10
-    relative on the standard errors."""
+    same likelihood instead.  Measured: 1e-17 on the coefficients, 2e-10
+    relative on the standard errors.  The 1e-12 asked of the coefficients
+    holds on every platform since the Newton polish after BFGS: BFGS alone
+    stopped 2.2e-9 short on Windows and macOS, 9e-12 on Linux."""
     y, Z = yz
     e = exact_mle["sd_trunc_01"]
     fit = truncated_regression(y, Z, lower=0.0, upper=1.0, names=["x1", "x2"])
     assert fit["converged"] and fit["n"] == e["n"] == 374
     for name, want in zip(NAMES, e["coef"]):
-        assert _get(fit, "coef_raw", name) == pytest.approx(float(want), abs=1e-10)
-    assert _get(fit, "coef_raw", "Log(scale)") == pytest.approx(float(e["log_sigma"]), abs=1e-10)
+        assert _get(fit, "coef_raw", name) == pytest.approx(float(want), abs=1e-12)
+    assert _get(fit, "coef_raw", "Log(scale)") == pytest.approx(float(e["log_sigma"]), abs=1e-12)
     for name, want in zip(NAMES + ("Log(scale)",), e["se"]):
         assert _get(fit, "se_raw", name) == pytest.approx(float(want), rel=1e-8)
     assert fit["loglik"] == pytest.approx(float(e["loglik"]), abs=1e-10)

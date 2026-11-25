@@ -11,12 +11,15 @@ Reference 1: R 4.3.3, truncreg 0.2-5, ``truncreg(theta ~ z1 + z2, point = 1,
 direction = "right", method = "nr")`` on those 48 units
 (``docs/external_reference/reference_example.R``).  With truncreg's default
 BFGS the fit stops early; its Newton-Raphson ends with a gradient of 9e-7,
-and the coefficients agree with PLEAP's to 2e-9.
+and the coefficients agree with PLEAP's to 1.4e-9, which is truncreg's own
+distance from the maximum.
 
 Reference 2: the same likelihood maximised by Newton's method in 60-digit
 arithmetic (``docs/external_reference/exact_mle.py``,
-``tests/data/exact_mle.json``): PLEAP agrees to 7e-12 on the coefficients
-and 5e-10 relative on the standard errors.
+``tests/data/exact_mle.json``): PLEAP agrees to 2e-16 on the coefficients
+and 5e-10 relative on the standard errors; the test asks 1e-12 of the
+coefficients, which holds on every platform since the Newton polish after
+BFGS.
 
 Earlier versions of this file pinned the previous example, which was drawn
 from real data and is no longer distributed.
@@ -89,8 +92,8 @@ def test_estimates_and_standard_errors_match_the_60_digit_fit(fit, exact_mle):
     e = exact_mle["example_trunc_1"]
     assert e["n"] == fit["n"]
     for name, want in zip(NAMES, e["coef"]):
-        assert fit[name] == pytest.approx(float(want), abs=1e-10)
-    assert np.log(fit["sigma"]) == pytest.approx(float(e["log_sigma"]), abs=1e-10)
+        assert fit[name] == pytest.approx(float(want), abs=1e-12)
+    assert np.log(fit["sigma"]) == pytest.approx(float(e["log_sigma"]), abs=1e-12)
     for name, want in zip(["se_const", "se_z1", "se_z2", "se_logsigma"], e["se"]):
         assert fit[name] == pytest.approx(float(want), rel=1e-8)
     assert fit["loglik"] == pytest.approx(float(e["loglik"]), abs=1e-11)

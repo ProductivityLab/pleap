@@ -100,9 +100,12 @@ platform's floating point: in continuous integration the fit truncated at 0
 and 1 on the synthetic data set SD ended 2.2 × 10⁻⁹ from its 60-digit maximum
 on Windows and macOS and 9 × 10⁻¹² on Linux. A few Newton steps on the
 analytic gradient now follow BFGS, and each is kept only if it shrinks the
-gradient without lowering the likelihood. On the public data every fit is now
-within 3 × 10⁻¹⁶ of the 60-digit maximum, on any platform. Displayed results
-do not change.
+gradient without lowering the likelihood. Every fit with a 60-digit reference
+is now within 3 × 10⁻¹⁶ of that maximum (measured on Linux), and the public
+tests ask 10⁻¹² of it on Windows, macOS and Linux instead of 10⁻⁹–10⁻¹⁰.
+What remains against R is R's own distance from the maximum, now reported in
+`docs/validation.md` §5. Displayed results, and the example's results and
+figures, do not change.
 
 ### Fixed: DEA, Malmquist and bootstrap scores on strongly skewed data
 

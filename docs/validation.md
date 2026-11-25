@@ -380,13 +380,14 @@ optimum.
 likelihood is flat the point where it stops depends on the platform: the fit
 truncated at 0 and 1 on SD ended 2.2 × 10⁻⁹ from its 60-digit maximum on
 Windows and macOS in continuous integration, 9 × 10⁻¹² on Linux. A few Newton
-steps on the analytic gradient now follow BFGS. On the public data every
-coefficient and log σ is then within 3 × 10⁻¹⁶ of the 60-digit maximum and
-the log-likelihood within 3 × 10⁻¹⁴ (SD censored at 0 and 1 and at 0;
-SD truncated at 0 and 1; E's Algorithm 1 sample). The tables below were
-measured before the polish: their columns against the 60-digit maximum
-overstate PLEAP's remaining distance, and its distance from R and Stata is now
-the reference programs' own distance from the maximum.
+steps on the analytic gradient now follow BFGS, so every fit reaches the
+maximum itself. The tables below are measured with v1.12 as released (on
+Linux): wherever a 60-digit maximum was computed — SD censored at 0 and 1 and
+at 0, SD truncated at 0 and 1, the example's Algorithm 1 sample, and D censored
+at 0 and 1 and at 0 — PLEAP's coefficients and log σ are within 3 × 10⁻¹⁶ of
+it, so what remains against R or Stata in the coefficients is the reference
+program's own distance from the maximum. The public tests ask 10⁻¹² of the
+coefficients against the 60-digit maxima, on Windows, macOS and Linux.
 
 ### 5.1 Tobit — R `AER::tobit` / `survreg(dist = "gaussian")`
 
@@ -396,12 +397,15 @@ the two environmental variables, censored at 0 and 1 and at 0 only:
 
 | | censored at 0 and 1 | censored at 0 |
 |---|---:|---:|
-| Coefficients and log σ, \|PLEAP − R\| | 8.7 × 10⁻¹² | 3 × 10⁻¹⁶ |
-| Standard errors, relative to R | 6.0 × 10⁻¹¹ | 2.0 × 10⁻¹¹ |
-| *p*-values, relative to R | 5.0 × 10⁻⁹ | 1.5 × 10⁻⁹ |
-| Wald statistic, relative to R | 3.0 × 10⁻¹⁰ | 4.0 × 10⁻¹¹ |
-| Log-likelihood, \|PLEAP − R\| | 9 × 10⁻¹⁴ | 2 × 10⁻¹³ |
-| Coefficients, \|PLEAP − 60-digit maximum\| | 5.8 × 10⁻¹¹ | 2 × 10⁻¹⁶ |
+| Coefficients and log σ, \|PLEAP − R\| | 3.8 × 10⁻¹⁵ | 2.0 × 10⁻¹¹ |
+| Standard errors, relative to R | 3.7 × 10⁻¹¹ | 2.0 × 10⁻¹¹ |
+| *p*-values, relative to R | 1.2 × 10⁻¹⁰ | 1.5 × 10⁻⁹ |
+| Wald statistic, relative to R | 4.9 × 10⁻¹² | 4.0 × 10⁻¹¹ |
+| Log-likelihood, \|PLEAP − R\| | 5 × 10⁻¹⁴ | 1.6 × 10⁻¹³ |
+| Coefficients and log σ, \|PLEAP − 60-digit maximum\| | 1.1 × 10⁻¹⁶ | 2.4 × 10⁻¹⁷ |
+
+Censored at 0 only, R's log σ is 2.0 × 10⁻¹¹ from the 60-digit maximum, and
+that is the whole of the difference in the first row.
 
 **On data set D** (validation data, not distributed).
 
@@ -418,23 +422,26 @@ run on D's file), settles where the optimum is.
 
 | Quantity | R, censored at 0 and 1 | \|PLEAP − R\| | \|PLEAP − 60-digit\| | R, censored at 0 | \|PLEAP − R\| |
 |---|---:|---:|---:|---:|---:|
-| Intercept | 0.2585932815 | 4.8 × 10⁻¹⁰ | 4.6 × 10⁻¹⁰ | 0.2573911050 | 1.3 × 10⁻¹¹ |
-| *x*₁ | 0.0297273076 | 1.2 × 10⁻¹⁰ | 1.2 × 10⁻¹⁰ | 0.0298067794 | 1.6 × 10⁻¹² |
-| *x*₂ | −0.0064180464 | 1.0 × 10⁻¹⁰ | 1.1 × 10⁻¹⁰ | −0.0075501173 | 5.2 × 10⁻¹² |
-| `Log(scale)` | −1.3347317604 | 3.7 × 10⁻¹⁰ | 3.8 × 10⁻¹⁰ | −1.3680540352 | 5.3 × 10⁻¹¹ |
-| s.e. intercept | 0.0347964266 | 1.3 × 10⁻¹¹ | 1.3 × 10⁻¹¹ | 0.0335906358 | 1.8 × 10⁻¹² |
-| s.e. *x*₁ | 0.0218877671 | 8.0 × 10⁻¹² | 8.3 × 10⁻¹² | 0.0211470660 | 1.1 × 10⁻¹² |
-| s.e. *x*₂ | 0.0216127411 | 8.0 × 10⁻¹² | 8.2 × 10⁻¹² | 0.0208818278 | 1.1 × 10⁻¹² |
-| s.e. `Log(scale)` | 0.0342724017 | 1.5 × 10⁻¹¹ | 1.5 × 10⁻¹¹ | 0.0332227747 | 2.3 × 10⁻¹³ |
-| Log-likelihood | −62.3289709685 | < 10⁻¹⁰ | 1 × 10⁻¹³ | −23.0506776212 | < 10⁻¹⁰ |
-| Wald statistic (df = 2) | 2.2337103662 | 1.4 × 10⁻⁸ | 1.4 × 10⁻⁸ | 2.3271335754 | 2.3 × 10⁻¹⁰ |
+| Intercept | 0.2585932815 | 1.3 × 10⁻¹¹ | 1.1 × 10⁻¹⁶ | 0.2573911050 | 1.3 × 10⁻¹¹ |
+| *x*₁ | 0.0297273076 | 1.6 × 10⁻¹² | < 10⁻¹⁶ | 0.0298067794 | 1.6 × 10⁻¹² |
+| *x*₂ | −0.0064180464 | 5.2 × 10⁻¹² | < 10⁻¹⁶ | −0.0075501173 | 5.2 × 10⁻¹² |
+| `Log(scale)` | −1.3347317604 | 1.0 × 10⁻¹¹ | < 10⁻¹⁶ | −1.3680540352 | 5.3 × 10⁻¹¹ |
+| s.e. intercept | 0.0347964266 | 3.8 × 10⁻¹³ | 2.9 × 10⁻¹⁴ | 0.0335906358 | 1.8 × 10⁻¹² |
+| s.e. *x*₁ | 0.0218877671 | 2.3 × 10⁻¹³ | 1.1 × 10⁻¹⁴ | 0.0211470660 | 1.1 × 10⁻¹² |
+| s.e. *x*₂ | 0.0216127411 | 2.2 × 10⁻¹³ | 6 × 10⁻¹⁶ | 0.0208818278 | 1.1 × 10⁻¹² |
+| s.e. `Log(scale)` | 0.0342724017 | 1.2 × 10⁻¹² | 1.2 × 10⁻¹² | 0.0332227747 | 2.0 × 10⁻¹³ |
+| Log-likelihood | −62.3289709685 | 4.8 × 10⁻¹¹ | 7 × 10⁻¹⁵ | −23.0506776212 | 3.6 × 10⁻¹¹ |
+| Wald statistic (df = 2) | 2.2337103662 | 4.1 × 10⁻¹² | 3.6 × 10⁻¹² | 2.3271335754 | 2.4 × 10⁻¹⁰ |
 
 Censored at 0 only, no firm is censored (no score is 0), so the model is the
-Gaussian regression and all three agree to 10⁻¹¹ or better. Censored at 1, R
-is within 10⁻¹¹ of the 60-digit optimum and PLEAP within 5 × 10⁻¹⁰: BFGS stops
-at its gradient tolerance, and the remaining gap is that, not a difference in
-the model. `tests/test_tobit_reference.py` asserts 10⁻⁷ relative on every
-coefficient and standard error, both specifications. The constant's *p*-value
+Gaussian regression. In both specifications PLEAP's coefficients are within
+3 × 10⁻¹⁶ of the 60-digit optimum and its standard errors within 1.2 × 10⁻¹²
+(numerical second derivatives). The differences from R in the coefficients
+are therefore R's own distance from the optimum; in the log-likelihood, scale
+and Wald statistic they include the ten decimals in which those were taken
+from R. Before v1.12's Newton polish, BFGS had stopped 4.6 × 10⁻¹⁰ from the
+optimum censored at 0 and 1. `tests/test_tobit_reference.py` asserts 10⁻⁷
+relative on every coefficient and standard error, both specifications. The constant's *p*-value
 is about 10⁻¹³; v1.12 computes *p*-values from the upper tail (`sf`) rather
 than as 1 − cdf, which had left it 8 × 10⁻⁴ relative away from R's, and now
 asserts 10⁻⁶ relative.
@@ -484,17 +491,17 @@ method (`method = "nr"`; its default BFGS stops early, at a gradient of
 
 | Fit | *n* | Reference | Coefficients and σ | Standard errors (relative) | Log-likelihood |
 |---|---:|---|---:|---:|---:|
-| E, last period, `truncreg(theta ~ z1 + z2, point = 1, direction = "right")` — Algorithm 1's sample | 48 | R | 1.4 × 10⁻⁹ | 1.9 × 10⁻⁸ | 7 × 10⁻¹⁵ |
-| same | 48 | 60-digit | 6.9 × 10⁻¹² | 4.5 × 10⁻¹⁰ | < 10⁻¹⁴ |
-| SD, truncated at 0 (`point = 0, direction = "left"`) | 400 | R | 1.7 × 10⁻¹³ | 6.2 × 10⁻¹¹ | 2 × 10⁻¹⁴ |
-| SD, truncated at 1, units strictly inside | 374 | R | 2.5 × 10⁻¹⁰ | 2.7 × 10⁻¹⁰ | 7 × 10⁻¹⁴ |
-| SD, truncated at 0 and 1 — R's truncreg takes one point | 374 | 60-digit | 8.6 × 10⁻¹² | 1.8 × 10⁻¹⁰ | 4 × 10⁻¹⁴ |
+| E, last period, `truncreg(theta ~ z1 + z2, point = 1, direction = "right")` — Algorithm 1's sample | 48 | R | 1.4 × 10⁻⁹ | 1.9 × 10⁻⁸ | < 10⁻¹⁴ |
+| same | 48 | 60-digit | 2.2 × 10⁻¹⁶ | 4.5 × 10⁻¹⁰ | 7 × 10⁻¹⁵ |
+| SD, truncated at 0 (`point = 0, direction = "left"`) | 400 | R | 1.3 × 10⁻¹³ | 6.3 × 10⁻¹¹ | 1.4 × 10⁻¹⁴ |
+| SD, truncated at 1, units strictly inside | 374 | R | 7.1 × 10⁻¹³ | 1.2 × 10⁻¹⁰ | 7 × 10⁻¹⁴ |
+| SD, truncated at 0 and 1 — R's truncreg takes one point | 374 | 60-digit | 1.4 × 10⁻¹⁷ | 1.9 × 10⁻¹⁰ | 1.4 × 10⁻¹⁴ |
 
-On the example R's Newton–Raphson stops at a gradient of 8.8 × 10⁻⁷, which
-is the size of its remaining distance from PLEAP; the 60-digit fit agrees
-with PLEAP to 7 × 10⁻¹². Before the example was replaced, the same check on
-the previous example gave 3 × 10⁻⁷ against R's default fit and 6 × 10⁻¹⁰
-against the 60-digit one.
+On the example R's Newton–Raphson stops at a gradient of 8.8 × 10⁻⁷,
+1.4 × 10⁻⁹ from the maximum, and that is the whole of its distance from
+PLEAP; the 60-digit fit agrees with PLEAP to 2.2 × 10⁻¹⁶. Before the example
+was replaced, the same check on the previous example gave 3 × 10⁻⁷ against R's
+default fit and 6 × 10⁻¹⁰ against the 60-digit one.
 
 **Against Stata and R on data set D.** The author fitted `truncreg vrs_i x1 x2`
 in Stata truncated at 0 and 1 (`ll(0) ul(1)`, 437 firms) and at 0 only
