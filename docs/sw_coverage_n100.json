@@ -1,0 +1,25 @@
+{
+ "n": 100,
+ "reps_requested": 200,
+ "reps_used": 200,
+ "failed": 0,
+ "L": 1000,
+ "nominal": 0.95,
+ "mc_standard_error_points": 1.54,
+ "coverage_algorithm1": {
+  "const": 93.0,
+  "z1": 98.0,
+  "z2": 92.0
+ },
+ "coverage_naive": {
+  "const": 92.5,
+  "z1": 97.5,
+  "z2": 93.0
+ },
+ "mean_interval_width": {
+  "const": 0.1251,
+  "z1": 0.1643,
+  "z2": 0.1636
+ },
+ "seconds": 4858.4
+}

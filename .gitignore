@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+Output/
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+*.spec
+
+# Validation data that may not be redistributed (KIS, STEPI): keep outside
+# the repository and point PLEAP_PRIVATE_DATA at it, or put it here.
+tests/data_private/
+
+# pyDEA's scratch pickles (docs/crosstool_pydea.py run from docs/)
+docs/tmp/

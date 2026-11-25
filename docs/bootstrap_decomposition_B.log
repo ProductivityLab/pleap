@@ -1,0 +1,10 @@
+baseline seed 1: h=0.09395 (745s)
+baseline seed 2: h=0.09395 (1211s)
+baseline {"seeds": [1, 2], "h": 0.09395, "gap_nonfrontier": 0.001029, "gap_frontier": 0.009319, "seed_to_seed_nonfrontier": 0.000587, "seed_to_seed_frontier": 0.006818, "signed_gap_nonfrontier": 0.000459}
+h_x0.8 seed 1: h=0.07516 (453s)
+h_x0.8 seed 2: h=0.07516 (901s)
+h_x0.8 {"seeds": [1, 2], "h": 0.07516, "gap_nonfrontier": 0.002581, "gap_frontier": 0.010583, "seed_to_seed_nonfrontier": 0.000613, "seed_to_seed_frontier": 0.006987, "signed_gap_nonfrontier": 0.002558}
+h_x1.2 seed 1: h=0.11274 (445s)
+h_x1.2 seed 2: h=0.11274 (881s)
+h_x1.2 {"seeds": [1, 2], "h": 0.11274, "gap_nonfrontier": 0.002213, "gap_frontier": 0.014429, "seed_to_seed_nonfrontier": 0.000551, "seed_to_seed_frontier": 0.006615, "signed_gap_nonfrontier": -0.001707}
+B exit=0

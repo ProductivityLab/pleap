@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pleap"
+version = "1.12"
+description = "Productivity Lab Efficiency Analysis Program - an integrated desktop workbench for Data Envelopment Analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE.txt"]
+authors = [{ name = "Changhee Kim", email = "ckim@inu.ac.kr" }]
+maintainers = [{ name = "Changhee Kim", email = "ckim@inu.ac.kr" }]
+keywords = [
+    "data envelopment analysis",
+    "DEA",
+    "efficiency",
+    "productivity",
+    "Malmquist",
+    "bootstrap",
+    "Tobit",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: Science/Research",
+    # The license is declared as a PEP 639 expression above; PEP 639 forbids
+    # also carrying a "License ::" classifier.
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "statsmodels>=0.14",
+    "openpyxl>=3.1",
+    "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+# The graphical interface.  The computational core (pleap.core) has no Qt
+# dependency, so it can be imported, scripted and tested without a display.
+gui = ["PyQt5>=5.15"]
+test = ["pytest>=7.4", "pytest-cov>=4.1"]
+build = ["pyinstaller>=6.0", "Pillow>=10.0"]
+
+[project.urls]
+Homepage = "https://github.com/ProductivityLab/pleap"
+Repository = "https://github.com/ProductivityLab/pleap"
+Issues = "https://github.com/ProductivityLab/pleap/issues"
+
+[project.gui-scripts]
+pleap = "pleap.__main__:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# The window icon and logo live inside the package so they survive both a
+# wheel install and a PyInstaller bundle.
+pleap = ["assets/*.png", "assets/*.ico"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "slow: bootstrap replications and other long-running checks (deselect with '-m \"not slow\"')",
+    "gui: requires PyQt5 and an off-screen display",
+    "private: needs the validation data that cannot be redistributed (skipped without PLEAP_PRIVATE_DATA)",
+]
+filterwarnings = [
+    "error::RuntimeWarning",
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]

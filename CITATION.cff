@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "PLEAP: Productivity Lab Efficiency Analysis Program"
+message: "If you use this software, please cite it using these metadata."
+type: software
+authors:
+  - given-names: Changhee
+    family-names: Kim
+    email: ckim@inu.ac.kr
+    affiliation: "Productivity Lab, Incheon National University, Incheon, Republic of Korea"
+repository-code: "https://github.com/ProductivityLab/pleap"
+url: "https://github.com/ProductivityLab/pleap"
+abstract: >-
+  PLEAP is an integrated desktop workbench for Data Envelopment Analysis.  It
+  covers radial CCR and BCC models under either orientation, the smoothed
+  homogeneous bootstrap with Kneip-Simar-Wilson bias correction, Malmquist
+  productivity decomposition, Tobit, truncated and OLS second-stage regression,
+  and parametric and non-parametric group comparisons, and it produces
+  publication-ready figures and tables from the results.  Every estimator is
+  validated against established reference software, and those comparisons are
+  part of the automated test suite.
+keywords:
+  - data envelopment analysis
+  - efficiency analysis
+  - productivity
+  - Malmquist index
+  - bootstrap
+  - Tobit regression
+  - operations management
+license: GPL-3.0-or-later
+version: "1.12"
+date-released: "2026-11-25"

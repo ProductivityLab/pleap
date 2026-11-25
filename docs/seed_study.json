@@ -1,0 +1,16 @@
+{
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "B": 2000,
+ "units": 60,
+ "frontier_units": 4,
+ "seed_to_seed_nonfrontier": 0.000525,
+ "gap_to_maxdea_nonfrontier": 0.001081,
+ "seed_to_seed_frontier": 0.004174,
+ "gap_to_maxdea_frontier": 0.009564
+}

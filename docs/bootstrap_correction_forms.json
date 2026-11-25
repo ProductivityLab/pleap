@@ -1,0 +1,14 @@
+{
+ "ratio (PLEAP)": {
+  "gap_nonfrontier": 0.001141,
+  "gap_frontier": 0.012728
+ },
+ "additive, Shephard scale": {
+  "gap_nonfrontier": 0.014938,
+  "gap_frontier": 0.24073
+ },
+ "ratio of means": {
+  "gap_nonfrontier": 0.009157,
+  "gap_frontier": 0.102027
+ }
+}

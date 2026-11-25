@@ -1,0 +1,78 @@
+{
+ "baseline_5_seeds": {
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "h": 0.09395,
+  "gap_nonfrontier": 0.001081,
+  "gap_frontier": 0.009564,
+  "seed_to_seed_nonfrontier": 0.000525,
+  "seed_to_seed_frontier": 0.004174
+ },
+ "baseline": {
+  "seeds": [
+   1,
+   2
+  ],
+  "h": 0.09395,
+  "gap_nonfrontier": 0.001029,
+  "gap_frontier": 0.009319,
+  "seed_to_seed_nonfrontier": 0.000587,
+  "seed_to_seed_frontier": 0.006818,
+  "signed_gap_nonfrontier": 0.000459
+ },
+ "no_reflect_0": {
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "h": 0.09395,
+  "gap_nonfrontier": 0.004835,
+  "gap_frontier": 0.032622,
+  "seed_to_seed_nonfrontier": 0.000648,
+  "seed_to_seed_frontier": 0.003509,
+  "signed_gap_nonfrontier": 0.004835
+ },
+ "shephard": {
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "h": 6.23751,
+  "gap_nonfrontier": 0.056417,
+  "gap_frontier": 0.189526,
+  "seed_to_seed_nonfrontier": 0.000464,
+  "seed_to_seed_frontier": 0.004148,
+  "signed_gap_nonfrontier": -0.056417
+ },
+ "h_x0.8": {
+  "seeds": [
+   1,
+   2
+  ],
+  "h": 0.07516,
+  "gap_nonfrontier": 0.002581,
+  "gap_frontier": 0.010583,
+  "seed_to_seed_nonfrontier": 0.000613,
+  "seed_to_seed_frontier": 0.006987,
+  "signed_gap_nonfrontier": 0.002558
+ },
+ "h_x1.2": {
+  "seeds": [
+   1,
+   2
+  ],
+  "h": 0.11274,
+  "gap_nonfrontier": 0.002213,
+  "gap_frontier": 0.014429,
+  "seed_to_seed_nonfrontier": 0.000551,
+  "seed_to_seed_frontier": 0.006615,
+  "signed_gap_nonfrontier": -0.001707
+ }
+}

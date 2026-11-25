@@ -1,0 +1,9 @@
+no_reflect_0 seed 1: h=0.09395 (755s)
+no_reflect_0 seed 2: h=0.09395 (1222s)
+no_reflect_0 seed 3: h=0.09395 (1679s)
+no_reflect_0 {"seeds": [1, 2, 3], "h": 0.09395, "gap_nonfrontier": 0.004835, "gap_frontier": 0.032622, "seed_to_seed_nonfrontier": 0.000648, "seed_to_seed_frontier": 0.003509, "signed_gap_nonfrontier": 0.004835}
+shephard seed 1: h=6.23751 (449s)
+shephard seed 2: h=6.23751 (896s)
+shephard seed 3: h=6.23751 (1324s)
+shephard {"seeds": [1, 2, 3], "h": 6.23751, "gap_nonfrontier": 0.056417, "gap_frontier": 0.189526, "seed_to_seed_nonfrontier": 0.000464, "seed_to_seed_frontier": 0.004148, "signed_gap_nonfrontier": -0.056417}
+A exit=0

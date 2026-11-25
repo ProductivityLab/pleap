@@ -1,0 +1,14 @@
+# Runtime requirements for running PLEAP from source.
+# `pip install -e .[gui]` reads pyproject.toml instead and is preferred.
+#
+# Note: pulp / CBC is NO LONGER required.  Every linear program is solved
+# in-process with scipy's HiGHS interface, so there is no external solver
+# binary to install (PuLP >= 4.0 also removed PULP_CBC_CMD and stopped
+# bundling CBC, which broke the previous code path outright).
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+statsmodels>=0.14
+openpyxl>=3.1
+matplotlib>=3.7
+PyQt5>=5.15

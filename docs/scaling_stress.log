@@ -1,0 +1,37 @@
+30 units, 2 inputs, 11.5 decades {'arithmetic mean, one solve': (289, 2, '8.17e-01'), 'geometric mean, one solve': (9, 0, '2.52e-02'), 'two candidates (first form of the fix)': (9, 0, '2.52e-02'), 'PLEAP v1.12': (0, 0, '3.50e-08')} (51s)
+30 units, 2 inputs, 14 decades {'arithmetic mean, one solve': (748, 1, '9.01e-01'), 'geometric mean, one solve': (18, 1, '4.80e-01'), 'two candidates (first form of the fix)': (19, 0, '5.11e-01'), 'PLEAP v1.12': (0, 0, '1.52e-08')} (102s)
+30 units, 2 inputs, 8 decades {'arithmetic mean, one solve': (2, 0, '2.97e-05'), 'geometric mean, one solve': (1, 0, '2.97e-05'), 'two candidates (first form of the fix)': (1, 0, '2.97e-05'), 'PLEAP v1.12': (0, 0, '3.72e-10')} (148s)
+60 units, 3 inputs, 11.5 decades {'arithmetic mean, one solve': (640, 2, '6.33e-01'), 'geometric mean, one solve': (4, 0, '1.90e-02'), 'two candidates (first form of the fix)': (3, 0, '5.00e-03'), 'PLEAP v1.12': (0, 0, '7.56e-09')} (322s)
+4 decades: {'draws': 25, 'flagged': 0, 'single_wrong': 0, 'single_max_gap': 8.908096482684869e-12, 'pleap_wrong': 0, 'pleap_max_gap': 8.908096482684869e-12} [] (347s)
+5 decades: {'draws': 25, 'flagged': 0, 'single_wrong': 0, 'single_max_gap': 2.5598745345689622e-11, 'pleap_wrong': 0, 'pleap_max_gap': 2.5598745345689622e-11} [] (372s)
+6 decades: {'draws': 25, 'flagged': 16, 'single_wrong': 0, 'single_max_gap': 2.5837720851740187e-10, 'pleap_wrong': 0, 'pleap_max_gap': 2.5837720851740187e-10} [] (403s)
+7 decades: {'draws': 25, 'flagged': 24, 'single_wrong': 0, 'single_max_gap': 9.649307464165702e-09, 'pleap_wrong': 0, 'pleap_max_gap': 9.649307464165702e-09} [] (439s)
+8 decades: {'draws': 25, 'flagged': 25, 'single_wrong': 1, 'single_max_gap': 2.9740182856174968e-05, 'pleap_wrong': 0, 'pleap_max_gap': 3.724698327545184e-10} [{'seed': 8, 'model': 'CCR', 'orient': 'input', 'unit': 6, 'gap': 2.9740182856174968e-05, 'spread_decades': 7.4955035692518415, 'scaled_min': 0.0005791034204179595, 'scaled_max': 18124.235612506687}] (474s)
+9 decades: {'draws': 25, 'flagged': 25, 'single_wrong': 0, 'single_max_gap': 3.879020882280315e-09, 'pleap_wrong': 0, 'pleap_max_gap': 3.879020882280315e-09} [] (509s)
+10 decades: {'draws': 25, 'flagged': 25, 'single_wrong': 0, 'single_max_gap': 4.763743399749387e-09, 'pleap_wrong': 0, 'pleap_max_gap': 4.763743399749387e-09} [] (544s)
+{
+  "arithmetic mean, one solve": {
+    "cases": 15000,
+    "failed": 5,
+    "wrong": 1679,
+    "max_gap": 0.9005558842775521
+  },
+  "geometric mean, one solve": {
+    "cases": 15000,
+    "failed": 1,
+    "wrong": 32,
+    "max_gap": 0.4800249754212531
+  },
+  "two candidates (first form of the fix)": {
+    "cases": 15000,
+    "failed": 0,
+    "wrong": 32,
+    "max_gap": 0.511102959616343
+  },
+  "PLEAP v1.12": {
+    "cases": 15000,
+    "failed": 0,
+    "wrong": 0,
+    "max_gap": 3.4995317199637554e-08
+  }
+}

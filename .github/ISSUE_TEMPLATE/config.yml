@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to cite PLEAP
+    url: https://github.com/ProductivityLab/pleap/blob/main/CITATION.cff
+    about: Citation metadata, also available from the "Cite this repository" button.
+  - name: Validation record
+    url: https://github.com/ProductivityLab/pleap/blob/main/docs/validation.md
+    about: What each estimator was checked against, and how closely it agreed.

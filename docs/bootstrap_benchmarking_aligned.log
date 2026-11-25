@@ -1,0 +1,18 @@
+seed 1: h = 7.1650
+seed 2: h = 7.1650
+seed 3: h = 7.1650
+{
+ "nonfrontier": {
+  "gap_pleap_aligned_vs_benchmarking": 0.000457,
+  "seed_to_seed_pleap_aligned": 0.000501,
+  "seed_to_seed_benchmarking": 0.000673,
+  "max_gap": 0.002784
+ },
+ "frontier": {
+  "gap_pleap_aligned_vs_benchmarking": 0.001608,
+  "seed_to_seed_pleap_aligned": 0.00312,
+  "seed_to_seed_benchmarking": 0.00365,
+  "max_gap": 0.003453
+ },
+ "h": 7.165
+}
